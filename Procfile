@@ -1,0 +1,1 @@
+web: gunicorn KingstonPointSystem.wsgi --log-file -
