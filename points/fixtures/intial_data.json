@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "username": "kumar",
-            "password": "pbkdf2_sha256$24000$87N2hg4RTpOd$WpIwWVxmA2irBAbqfwO8Ypcr4+dx1Bc5UYX5tHJ8xTA="
+            "password": "pbkdf2_sha256$24000$KEC3Ddt2s3X4$fED7kuB/7wpZarj+op5TvpnLs7tITMigxWzfEHMfSTI="
         }
     },
     {
