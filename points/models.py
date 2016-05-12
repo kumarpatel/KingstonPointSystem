@@ -7,10 +7,10 @@ from django.utils import timezone
 
 
 class Point(models.Model):
-    assigned_by = models.ForeignKey("auth.User")
-    assigned_to = models.ForeignKey("auth.User")
+    assigned_by = models.ForeignKey("auth.User", related_name="assigned_by")
+    assigned_to = models.ForeignKey("auth.User", related_name="assigned_to")
     comment = models.CharField(max_length=200, blank=False)
-    alias = models.CharField(blank=True)
+    alias = models.CharField(max_length=200, blank=True)
     points = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
 
