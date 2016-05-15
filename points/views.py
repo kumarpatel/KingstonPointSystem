@@ -11,7 +11,7 @@ class PointViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-        if self.request.query_params["person"] is not None:
+        if "person" in self.request.query_params:
             self.queryset = self.queryset.filter(person__pk=self.request.query_params["person"])
 
         return super(PointViewSet, self).get_queryset()
