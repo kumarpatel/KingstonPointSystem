@@ -3,6 +3,8 @@ from points.models import Point, Alias
 from points.serializers import PointSerializer, DashboardSerializer, AliasSerializer
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
+from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.response import Response
 
 
 class PointViewSet(viewsets.ModelViewSet):
@@ -27,6 +29,14 @@ class AliasViewSet(viewsets.ModelViewSet):
             self.queryset = self.queryset.filter(person__pk=self.request.query_params["person"])
 
         return super(AliasViewSet, self).get_queryset()
+
+
+class MockService(viewsets.ReadOnlyModelViewSet):
+    serializer_class = DashboardSerializer
+
+    def list(self, request, *args, **kwargs):
+        raise APIException(detail="list")
+        return super(MockService, self).list(request, *args, **kwargs)
 
 
 class DashboardViewSet(viewsets.ModelViewSet):
