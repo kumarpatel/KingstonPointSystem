@@ -1,11 +1,12 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
-from points.views import PointViewSet, DashboardViewSet
+from points.views import PointViewSet, DashboardViewSet, AliasViewSet
 
 router = DefaultRouter()
 router.register(r'points', PointViewSet)
-router.register(r'dashboard', DashboardViewSet)
+router.register(r'alias', AliasViewSet)
+router.register(r'dashboards', DashboardViewSet, base_name="dashboard-list")
 
 urlpatterns = [
     # url(r'^$', 'points.views.detail', name='home'),
@@ -13,3 +14,4 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+

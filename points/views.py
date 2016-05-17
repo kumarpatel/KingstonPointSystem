@@ -1,6 +1,6 @@
 from django.db.models import Sum
-from points.models import Point
-from points.serializers import PointSerializer, DashboardSerializer
+from points.models import Point, Alias
+from points.serializers import PointSerializer, DashboardSerializer, AliasSerializer
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 
@@ -17,8 +17,19 @@ class PointViewSet(viewsets.ModelViewSet):
         return super(PointViewSet, self).get_queryset()
 
 
-class DashboardViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Point.objects.none()
+class AliasViewSet(viewsets.ModelViewSet):
+    queryset = Alias.objects.all()
+    serializer_class = AliasSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+        if "person" in self.request.query_params:
+            self.queryset = self.queryset.filter(person__pk=self.request.query_params["person"])
+
+        return super(AliasViewSet, self).get_queryset()
+
+
+class DashboardViewSet(viewsets.ModelViewSet):
     serializer_class = DashboardSerializer
 
     def get_queryset(self):
