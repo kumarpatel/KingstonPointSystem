@@ -42,6 +42,14 @@ class MockService(viewsets.ReadOnlyModelViewSet):
 class DashboardViewSet(viewsets.ModelViewSet):
     serializer_class = DashboardSerializer
 
+    def list(self, request, *args, **kwargs):
+        raise APIException(detail="list")
+        return Response(ValidationError(detail="sdfsdfdsfdsf"))
+
+    def retrieve(self, request, *args, **kwargs):
+        raise APIException(detail="retrieve")
+        return Response(ValidationError(detail="sdfsdfdsfdsf"))
+
     def get_queryset(self):
         return User.objects.values("pk")\
             .annotate(total_points=Sum("points__amount"))\
