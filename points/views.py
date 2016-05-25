@@ -5,6 +5,7 @@ from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.response import Response
+import time
 
 
 class PointViewSet(viewsets.ModelViewSet):
@@ -43,8 +44,7 @@ class DashboardViewSet(viewsets.ModelViewSet):
     serializer_class = DashboardSerializer
 
     def list(self, request, *args, **kwargs):
-        import time
-        time.sleep(10);
+        time.sleep(10)
         raise APIException(detail="list")
         return Response(ValidationError(detail="sdfsdfdsfdsf"))
 
