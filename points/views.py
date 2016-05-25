@@ -43,6 +43,8 @@ class DashboardViewSet(viewsets.ModelViewSet):
     serializer_class = DashboardSerializer
 
     def list(self, request, *args, **kwargs):
+        import time
+        time.sleep(10);
         raise APIException(detail="list")
         return Response(ValidationError(detail="sdfsdfdsfdsf"))
 
