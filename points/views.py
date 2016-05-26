@@ -45,7 +45,7 @@ class DashboardViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         time.sleep(10)
-        raise APIException(detail="list")
+        raise ValidationError(detail="list")
         return Response(ValidationError(detail="sdfsdfdsfdsf"))
 
     def retrieve(self, request, *args, **kwargs):
